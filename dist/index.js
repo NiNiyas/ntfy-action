@@ -16106,7 +16106,6 @@ require('./sourcemap-register.js'); /******/
                     'statusCode': response.statusCode
                 });
             } catch (error) {
-                console.log(error)
                 core.setFailed(error.message);
             }
         }
