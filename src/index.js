@@ -175,7 +175,7 @@ async function run() {
             'statusCode': response.statusCode
         });
     } catch (error) {
-        console.log(error.data)
+        console.log(error.response.data)
         core.setFailed(error.message);
     }
 }
