@@ -28,7 +28,7 @@
   "dependencies": {
     "@actions/core": "^1.9.1",
     "@actions/github": "^5.0.3",
-    "axios": "^0.27.2"
+    "axios": "^1.1.0"
   },
   "devDependencies": {
     "js-beautify": "^1.14.6",
