@@ -13,7 +13,7 @@ async function screenshot(URL) {
     );
     return null;
   }
-  core.info("Screengrabbing...");
+  core.info("Capturing screenshot...");
   const browser = await playwright.chromium.launch({
     executablePath: "/usr/bin/google-chrome",
   });
@@ -22,8 +22,38 @@ async function screenshot(URL) {
   await page.goto(URL);
   await page.screenshot({
     path: "/tmp/screenshot.png",
+    fullPage: true
+    
   });
+  core.info("Screenshot captured successfully!");
   await browser.close();
+}
+
+async function getJobID(REPOSITORY, RUN_ID) {
+  const jobUrl = `https://api.github.com/repos/${REPOSITORY}/actions/runs/${RUN_ID}/jobs`;
+  const isSiteReachable = await checkSiteReachable(jobUrl);
+  if (!isSiteReachable) {
+    core.warning(
+      "Fetching job id failed. Please ensure that the repository is not private."
+    );
+    return null;
+  }
+  try {
+    const response = await axios.get(jobUrl, {
+      headers: {
+        Accept: "application/vnd.github.v3+json",
+      },
+    });
+    const {jobs} = response.data;
+    if (jobs.length > 0) {
+      return jobs[0].id;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    core.error(error);
+    return null;
+  }
 }
 
 async function checkSiteReachable(URL) {
@@ -31,6 +61,7 @@ async function checkSiteReachable(URL) {
     const response = await axios.head(URL);
     return response.status === 200;
   } catch (error) {
+    core.error(error);
     return false;
   }
 }
@@ -48,22 +79,23 @@ async function uploadFile(filePath) {
       return null;
     }
 
+    core.info("Uploading image to uguu.se...");
     const response = await axios.post(siteUrl, formData, {
       headers: formData.getHeaders(),
     });
 
     if (response.data.success) {
-      const { filename, url } = response.data.files[0];
-      return { filename, url };
+      return response.data.files[0];
     } else {
       return null;
     }
   } catch (error) {
-    return null;
+    core.error(error);
   }
 }
 
 module.exports = {
   screenshot,
   uploadFile,
+  getJobID,
 };

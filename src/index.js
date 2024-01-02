@@ -3,7 +3,8 @@ const axios = require("axios");
 const github = require("@actions/github");
 const {
     screenshot,
-    uploadFile
+    uploadFile,
+    getJobID
 } = require("./screenshot");
 
 async function githubmessage() {
@@ -139,7 +140,7 @@ async function run() {
         const title = core.getInput("title") || "GitHub Actions";
         const details = core.getInput("details");
         const priority = core.getInput("priority") || 3;
-        const icon = core.getInput("icon")
+        const icon = core.getInput("icon");
         const image = core.getInput("image");
         const actionsInput = core.getInput("actions");
         let actions;
@@ -172,18 +173,25 @@ async function run() {
         };
 
         if (ImageEnabled) {
-            await screenshot(
-                `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`
+            const jobId = await getJobID(
+                process.env.GITHUB_REPOSITORY,
+                process.env.GITHUB_RUN_ID
             );
-            const uploadResult = await uploadFile("/tmp/screenshot.png");
+            if (jobId) {
+                await screenshot(
+                    `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}/job/${jobId}`
+                );
 
-            if (uploadResult && uploadResult.filename && uploadResult.url) {
-                const {
-                    filename,
-                    url
-                } = uploadResult;
-                Payload.attach = url;
-                Payload.filename = filename;
+                const uploadResult = await uploadFile("/tmp/screenshot.png");
+
+                if (uploadResult && uploadResult.filename && uploadResult.url) {
+                    const {
+                        filename,
+                        url
+                    } = uploadResult;
+                    Payload.attach = url;
+                    Payload.filename = filename;
+                }
             }
         }
 
