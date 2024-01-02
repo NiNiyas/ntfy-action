@@ -1,8 +1,8 @@
 name: ntfy_action
 description: Send GitHub Action workflow notifications to ntfy.
 branding:
-  icon: 'upload'
-  color: 'blue'
+  icon: "upload"
+  color: "blue"
 inputs:
   url:
     description: Server URL
@@ -25,18 +25,18 @@ inputs:
   priority:
     description: Message priority.
     required: false
-  #data:
-  #  description: 'Form data'
-  #  required: false
-  #name:
-  #  description: 'File name'
-  #  required: false
-  #file:
-  #  description: 'File path'
-  #  required: false
+  actions:
+    description: ntfy action buttons. Maximum 3 buttons.
+    required: false
+  image:
+    description: Attach an image of the workflow.
+    required: false
+  icon:
+    description: An icon that will appear next to the text of the notification
+    required: false
 outputs:
   response:
-    description: 'The response of POST request'
+    description: "The response of POST request"
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
+  using: "node20"
+  main: "dist/index.js"

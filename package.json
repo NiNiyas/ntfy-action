@@ -1,6 +1,6 @@
 {
   "name": "ntfy-action",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint .",
@@ -24,11 +24,13 @@
   "bugs": {
     "url": "https://github.com/NiNiyas/ntfy-action/issues"
   },
-  "homepage": "https://github.com/actions/javascript-action#readme",
+  "homepage": "https://github.com/NiNiyas/ntfy-action#readme",
   "dependencies": {
     "@actions/core": "^1.10.1",
     "@actions/github": "^6.0.0",
-    "axios": "^1.6.3"
+    "axios": "^1.6.3",
+    "playwright": "^1.40.1",
+    "form-data": "^4.0.0"
   },
   "devDependencies": {
     "js-beautify": "^1.14.11",
