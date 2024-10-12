@@ -30,7 +30,7 @@
     "@actions/github": "^6.0.0",
     "axios": "^1.7.7",
     "playwright": "^1.45.2",
-    "form-data": "^4.0.0"
+    "form-data": "^4.0.1"
   },
   "devDependencies": {
     "js-beautify": "^1.15.1",
