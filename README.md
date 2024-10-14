@@ -2,7 +2,7 @@
 
 Send GitHub action notifications to [ntfy.sh](https://ntfy.sh).
 
-This is currently only available for `push`, `release`, `schedule`, `workflow`, `repository_dispatch` and `workflow_dispatch` events.
+This is currently only available for `push`, `release`, `schedule`, `workflow`, `repository_dispatch` and `workflow_dispatch` events. This action will send a default message wich can be extended with your input `details`.
 
 Forked from [Form_Data_HTTP_POST_Action](https://github.com/alikamal1/Form_Data_HTTP_POST_Action).
 
@@ -97,4 +97,52 @@ Forked from [Form_Data_HTTP_POST_Action](https://github.com/alikamal1/Form_Data_
     tags: +1,partying_face,action,cancelled
     details: Workflow has been cancelled!
     actions: '[{"action": "view", "label": "Open portal", "url": "https://home.nest.com/", "clear": true}]'
+```
+
+## Default messages
+
+#### push
+
+```js
+`Author: ${payload.head_commit.author.username}\n` +
+`Committer: ${payload.head_commit.committer.name}\n` +
+`Ref: ${context.ref}\n` +
+`Pushed by: ${payload.pusher.name}\n` +
+`Workflow Job Name: ${context.job}\n` +
+`Workflow Name: ${context.workflow}\n\n` +
+`Commit Message\n${payload.head_commit.message}`
+```
+
+#### release
+
+```js
+`${payload.release.author.login} has ${payload.action} $
+{payload.release.tag_name} on ${payload.repository.full_name}.
+\n\n` +
+`Repo: ${payload.repository.html_url}\n` +
+`Name: ${payload.release.name}\n` +
+`Author: ${payload.release.author.login}\n` +
+`Prerelease: ${payload.release.prerelease}\n` +
+`Workflow Job Name: ${context.job}\n` +
+`Workflow Name: ${context.workflow}\n\n` +
+`Release Message\n${payload.release.body}`;
+```
+
+#### schedule
+
+```js
+`Scheduled task '${context.job}' has been executed in ${process.
+env.GITHUB_REPOSITORY}.\n\n` +
+`Workflow Name: ${context.workflow}\n` +
+`Cron: ${payload.schedule}`;
+```
+
+#### workflow, repository_dispatch, workflow_dispatch, default
+
+```js
+`Workflow '${context.workflow}' has been executed in ${payload.
+repository.full_name}\n\n` +
+`Repository: ${payload.repository.full_name}\n` +
+`Workflow Job Name: ${context.job}\n` +
+`Event Name: ${context.eventName}`;
 ```
