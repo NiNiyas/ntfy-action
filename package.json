@@ -28,7 +28,7 @@
   "dependencies": {
     "@actions/core": "^1.11.1",
     "@actions/github": "^6.0.0",
-    "axios": "^1.8.1",
+    "axios": "^1.8.3",
     "playwright": "^1.50.1",
     "form-data": "^4.0.2"
   },
