@@ -1,6 +1,6 @@
 {
   "name": "ntfy-action",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint .",
@@ -33,6 +33,9 @@
     "form-data": "^4.0.2"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.28.0",
+    "globals": "^16.2.0",
     "js-beautify": "^1.15.4",
     "@vercel/ncc": "^0.38.3",
     "eslint": "^9.28.0",

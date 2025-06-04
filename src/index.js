@@ -152,6 +152,7 @@ async function run() {
                 actions = JSON.parse(actionsInput);
             } catch (error) {
                 core.warning("Invalid input for 'actions'. Using default actions.");
+                core.warning(`Error: ${error.message}`);
                 actions = message[0];
             }
         } else {
@@ -210,7 +211,12 @@ async function run() {
             statusCode: response.statusCode,
         });
     } catch (error) {
-        core.error(error.response);
+        if (error.response) {
+            core.error(`Request failed with status ${error.response.status}: ${error.response.statusText}`);
+            core.error(`Response body: ${JSON.stringify(error.response.data)}`);
+        } else {
+            core.error(`Unknown error: ${error.message}`);
+        }
         core.setFailed(error.message);
     }
 }
