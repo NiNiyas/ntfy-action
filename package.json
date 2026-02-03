@@ -33,7 +33,7 @@
     "form-data": "^4.0.3"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/eslintrc": "^3.3.3",
     "@eslint/js": "^9.35.0",
     "globals": "^16.4.0",
     "js-beautify": "^1.15.4",
