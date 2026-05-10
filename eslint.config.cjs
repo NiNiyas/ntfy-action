@@ -21,15 +21,14 @@ module.exports = defineConfig([globalIgnores(["**/dist/"]), {
 
     languageOptions: {
         globals: {
-            ...globals.commonjs,
-            ...globals.jest,
             ...globals.node,
+            ...globals.jest,
             Atomics: "readonly",
             SharedArrayBuffer: "readonly",
         },
 
-        ecmaVersion: 2018,
-        sourceType: "commonjs",
+        ecmaVersion: 2022,
+        sourceType: "module",
     },
 
     rules: {},

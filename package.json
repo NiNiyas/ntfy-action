@@ -1,13 +1,13 @@
 {
   "name": "ntfy-action",
   "version": "1.0.5",
-  "main": "src/index.js",
+  "main": "src/index.mjs",
   "scripts": {
     "lint": "eslint .",
-    "prepare": "ncc build src/index.js -o dist --source-map --license licenses.txt",
+    "prepare": "ncc build src/index.cjs -o dist --source-map --license licenses.txt",
     "test": "jest",
     "all": "npm run lint && npm run prepare && npm run test && npm run beautify",
-    "beautify": "js-beautify src/index.js -r -q && js-beautify dist/index.js -r -q && js-beautify dist/sourcemap-register.js -r -q"
+    "beautify": "js-beautify src/index.cjs -r -q && js-beautify src/index.mjs -r -q && js-beautify dist/index.cjs -r -q && js-beautify dist/sourcemap-register.cjs -r -q"
   },
   "repository": {
     "type": "git",
@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/NiNiyas/ntfy-action#readme",
   "dependencies": {
-    "@actions/core": "^2.0.2",
+    "@actions/core": "^3.0.0",
     "@actions/github": "^6.0.1",
     "axios": "^1.16.0",
     "playwright": "^1.59.1",

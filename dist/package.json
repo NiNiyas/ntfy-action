@@ -1,6 +1,6 @@
 {
   "name": "playwright-core",
-  "version": "1.52.0",
+  "version": "1.59.1",
   "description": "A high-level API to automate web browsers",
   "repository": {
     "type": "git",
@@ -22,8 +22,14 @@
       "default": "./index.js"
     },
     "./package.json": "./package.json",
+    "./lib/bootstrap": "./lib/bootstrap.js",
     "./lib/outofprocess": "./lib/outofprocess.js",
     "./lib/cli/program": "./lib/cli/program.js",
+    "./lib/tools/cli-client/program": "./lib/tools/cli-client/program.js",
+    "./lib/tools/mcp/program": "./lib/tools/mcp/program.js",
+    "./lib/mcpBundle": "./lib/mcpBundle.js",
+    "./lib/zodBundle": "./lib/zodBundle.js",
+    "./lib/tools/exports": "./lib/tools/exports.js",
     "./lib/remote/playwrightServer": "./lib/remote/playwrightServer.js",
     "./lib/server": "./lib/server/index.js",
     "./lib/server/utils/image_tools/stats": "./lib/server/utils/image_tools/stats.js",
@@ -33,9 +39,7 @@
     "./lib/server/registry/index": "./lib/server/registry/index.js",
     "./lib/utils": "./lib/utils.js",
     "./lib/utilsBundle": "./lib/utilsBundle.js",
-    "./lib/zipBundle": "./lib/zipBundle.js",
-    "./types/protocol": "./types/protocol.d.ts",
-    "./types/structs": "./types/structs.d.ts"
+    "./lib/zipBundle": "./lib/zipBundle.js"
   },
   "bin": {
     "playwright-core": "cli.js"
