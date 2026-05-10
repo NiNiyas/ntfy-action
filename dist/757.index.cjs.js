@@ -11,8 +11,8 @@ exports.modules = {
 var core = __webpack_require__(13078);
 // EXTERNAL MODULE: ./node_modules/axios/lib/axios.js + 56 modules
 var axios = __webpack_require__(82236);
-// EXTERNAL MODULE: ./node_modules/@actions/github/lib/github.js
-var github = __webpack_require__(93228);
+// EXTERNAL MODULE: ./node_modules/@actions/github/lib/github.js + 21 modules
+var github = __webpack_require__(50157);
 // EXTERNAL MODULE: ./node_modules/playwright/index.mjs + 1 modules
 var playwright = __webpack_require__(45784);
 // EXTERNAL MODULE: external "node:fs"
@@ -127,7 +127,7 @@ async function uploadFile(filePath) {
 
 
 async function githubmessage() {
-    const context = github.context;
+    const context = github/* context */._;
     const payload = context.payload;
     let action_buttons;
     let message;
@@ -320,14 +320,14 @@ async function run() {
         const response = await axios/* default */.A.post(ntfy_url, Payload, {
             headers: {
                 "Content-Type": "application/json",
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; rv:109.0) Gecko/20100101 Firefox/119.0",
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0",
                 Priority: priority,
                 ...headers,
             },
         });
 
         core/* setOutput */.uH("response", {
-            statusCode: response.statusCode,
+            statusCode: response.status,
         });
     } catch (error) {
         if (error.response) {
