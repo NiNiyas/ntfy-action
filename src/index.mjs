@@ -201,14 +201,14 @@ async function run() {
         const response = await axios.post(ntfy_url, Payload, {
             headers: {
                 "Content-Type": "application/json",
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; rv:109.0) Gecko/20100101 Firefox/119.0",
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0",
                 Priority: priority,
                 ...headers,
             },
         });
 
         core.setOutput("response", {
-            statusCode: response.statusCode,
+            statusCode: response.status,
         });
     } catch (error) {
         if (error.response) {
